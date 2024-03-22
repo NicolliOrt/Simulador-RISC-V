@@ -9,13 +9,12 @@ public class App {
         Scanner scannerAux = new Scanner(System.in);
         String teste = "";
 
-        System.out.println("Digite o valor de teste: ");
+        System.out.println("Digite o caminho completo de teste: ");
         teste = scannerAux.nextLine();
 
         String caminhoArquivo = "";
         try {
-            caminhoArquivo = "C:\\Users\\nikef\\OneDrive\\Documentos\\CIENCIA_DA_COMPUTACAO\\3ANO\\O.A.C\\TRABALHOS\\TRABALHO_2_3\\TESTES\\"
-            + teste +".txt";
+            caminhoArquivo = teste;
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -101,9 +100,9 @@ public class App {
                 control.printFlags();
 
                 //Decide se irá incrementar o endereço linearmento ou de acordo com BENCH
-                sum1.setResultado(pc.getEndereco(), 4);
-                sum2.setResultado(pc.getEndereco(), imm.getImmInt());
-                mux3.setResultado(sum1.getResultado(), sum2.getResultado(), (control.isBranch() & alu.getEhZero()));
+                sum1.setResultado(pc.getEndereco(), 4); //Acréscimo regular
+                sum2.setResultado(pc.getEndereco(), imm.getImmInt()); //Acréscimo com immediate
+                mux3.setResultado(sum1.getResultado(), sum2.getResultado(), (control.isBranch() & alu.getEhZero())); //Mux toma a decisão
                 pc.setEndereco(mux3.getResultado());
 
                 System.out.println("End Instrucao: " + instrucao);
