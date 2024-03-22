@@ -54,7 +54,7 @@ public class ImmGen {
 
             case 99:// BEQ
                 imm = instrucao.substring(0, 0+1) + instrucao.substring(24, 24+1) +
-                instrucao.substring(1, 6+1) + instrucao.substring(20, 23+1) + "0";    
+                instrucao.substring(1, 6+1) + instrucao.substring(20, 23+1) + "0";
 
                 this.imm = parseInteger(imm);
 

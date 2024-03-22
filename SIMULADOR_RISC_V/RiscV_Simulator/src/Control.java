@@ -25,11 +25,9 @@ public class Control {
 
     public void setFlags(String instrucao) {      
         int opcode = decodificarOpcode(instrucao);
-          
+
         switch (opcode) {
             case 51:
-                System.out.println("TYPE R");
-
                 this.ALUSrc = false;
                 this.MemToReg = false;
                 this.RegWrite = true;
@@ -41,8 +39,6 @@ public class Control {
                 break;
             
             case 3:
-                System.out.println("TYPE LW");
-
                 this.ALUSrc = true;
                 this.MemToReg = true;
                 this.RegWrite = true;
@@ -54,8 +50,6 @@ public class Control {
                 break;
 
             case 35:
-                System.out.println("TYPE SW");
-
                 this.ALUSrc = true;
                 this.MemToReg = false;
                 this.RegWrite = false;
@@ -67,8 +61,6 @@ public class Control {
                 break;
 
             case 99:
-                System.out.println("BEQ");
-
                 this.ALUSrc = false;
                 this.MemToReg = false;
                 this.RegWrite = false;
@@ -80,8 +72,6 @@ public class Control {
                 break;
 
             case 19:
-                System.out.println("addi");
-
                 this.ALUSrc = true;
                 this.MemToReg = false;
                 this.RegWrite = true;
@@ -124,4 +114,16 @@ public class Control {
     public int getALUop() {
         return ALUop;
     }
+
+    public void printFlags() {
+        System.out.println("ALUSrc: " + ALUSrc);
+        System.out.println("MemToReg: " + MemToReg);
+        System.out.println("RegWrite: " + RegWrite);
+        System.out.println("MemRead: " + MemRead);
+        System.out.println("MemWrite: " + MemWrite);
+        System.out.println("Branch: " + Branch);
+        System.out.println("ALUop: " + ALUop);
+        System.out.println("------------------------------------------------");
+    }
+    
 }

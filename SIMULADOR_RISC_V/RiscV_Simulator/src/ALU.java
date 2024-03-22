@@ -35,17 +35,28 @@ public class ALU {
             case 6:
                 this.resultado = opA - opB;
                 
+                if(this.resultado == 0) {
+                    this.flagZero = true;
+                } else {
+                    this.flagZero = false;
+                }
+                
+                break;
+
+            case 7:
+                this.resultado = opA ^ opB;
+                
+                if(this.resultado == 0) {
+                    this.flagZero = false;
+                } else {
+                    this.flagZero = true;
+                }
+
                 break;
         
             default:
                 
                 break;
-        }
-
-        if(this.resultado == 0) {
-            this.flagZero = true;
-        } else {
-            this.flagZero = false;
         }
     }
 }

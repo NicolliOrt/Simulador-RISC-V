@@ -66,15 +66,17 @@ public class ALUControl {
         this.funct7 = decodificarFunct7(instrucao);
 
         if(ALUop == 0) { //lw ou sw
-            System.out.println("lw ou sw ou addi-> add");
             this.resultado = 2; //add
         }
         else if (ALUop == 1) { //beq
-            System.out.println("beg -> sub");
-            this.resultado = 6; //sub 
+            if(funct3 == 0){
+                this.resultado = 6; //sub 
+            }
+            else{
+                this.resultado = 7;
+            }
         }
         else if (ALUop == 2) { //add, sub, and, or
-            System.out.println("tipo r -> sub, add, and, or");
             if(funct7 == 0) {
                 if(funct3 == 0) {
                     this.resultado = 2;//add
