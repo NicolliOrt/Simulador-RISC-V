@@ -66,25 +66,41 @@ public class App {
 
             if(instrucao != null) {
 
+                //Segue para o componente CONTROL, onde irá setar as flags
                 control.setFlags(instrucao);
+
+                //Segue para o GERADOR DE IMEDIATOS
                 imm.gerarImm(instrucao);
+
+                //Seta os registradores e seus dados no BANCO DE REGISTRADORES
                 br.setRegistradores(instrucao);
 
+                //Decide quem irá para ALU: ReadData2 (rs2) ou IMEDIATO
                 mux1.setResultado(br.getReadData2(), imm.getImmInt(), control.isALUSrc());
+
+                //Decide qual operação ALU irá realizar
                 aluControl.setResultado(instrucao);
+
+                //A ALU realiza a opração
                 alu.setResultado(aluControl.getResultado(), br.getReadData1(), mux1.getResultado());
+
+                //Seta a memória de acordo com as flags
                 md.executeDataBase(control.isMemWrite(), control.isMemRead(), alu.getResultado(), br.getReadData2());
 
+                //Mux2 encaminha de volta para o banco de registradores
                 mux2.setResultado(alu.getResultado(), md.getReadData(), control.isMemToReg());
 
+                //Escreve de volta nos registradores
                 br.setWriteData(control.isRegWrite(), mux2.getResultado());
                 
+                //Imprime as instruções
                 br.printBancoRegistradores();
                 br.printTabelaRegistradores();
                 md.printEnderecosUtilizados();
                 md.printState();
                 control.printFlags();
 
+                //Decide se irá incrementar o endereço linearmento ou de acordo com BENCH
                 sum1.setResultado(pc.getEndereco(), 4);
                 sum2.setResultado(pc.getEndereco(), imm.getImmInt());
                 mux3.setResultado(sum1.getResultado(), sum2.getResultado(), (control.isBranch() & alu.getEhZero()));
