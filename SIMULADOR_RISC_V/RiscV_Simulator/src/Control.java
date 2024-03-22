@@ -1,3 +1,8 @@
+/**
+ * This class contains the control signals for the CPU.
+ * 
+ * @author Nicolli, Guilherme Miller, Matheus Rezende
+ */
 public class Control {
     private boolean ALUSrc;
     private boolean MemToReg;
@@ -7,6 +12,9 @@ public class Control {
     private boolean Branch;
     private int ALUop;
 
+    /**
+     * Creates a new instance of the Control class with default values.
+     */
     public Control() {
         this.ALUSrc = false;
         this.MemRead = false;
@@ -17,12 +25,22 @@ public class Control {
         this.ALUop = 0;
     }
 
+    /**
+     * Decodes the opcode of an instruction and sets the control signals accordingly.
+     * 
+     * @param instrucao The instruction to be decoded
+     */
     private static int decodificarOpcode (String instrucao) {
         String aux = instrucao.substring(25, 31+1);
 
         return Integer.parseInt(aux, 2);
     }
 
+    /**
+     * Sets the control signals based on the given instruction.
+     * 
+     * @param instrucao The instruction to be decoded
+     */
     public void setFlags(String instrucao) {      
         int opcode = decodificarOpcode(instrucao);
 

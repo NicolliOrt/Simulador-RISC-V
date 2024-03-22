@@ -5,16 +5,22 @@ public class ImmGen {
         this.imm = 0;
     }
     
+    /**
+     * This method is responsible for parsing an integer from a binary string.
+     * 
+     * @param bin the binary string to be parsed
+     * @return the integer represented by the binary string
+     */
     public static int parseInteger (String bin) {
         int imm = 0;
         char[] binAux = bin.toCharArray(); 
     
-        if(binAux[0] == '0') {
+        if(binAux[0] == '0') {//positivo
             imm = Integer.parseInt(bin, 2);
         } 
-        else{
+        else{//negativo
             for(int i = 0; i < binAux.length; i++) {
-                if(binAux[i] == '0') {
+                if(binAux[i] == '0') {//inversão
                     binAux[i] = '1';
                 }
                 else {
@@ -32,6 +38,11 @@ public class ImmGen {
         return imm;
     }
 
+    /**
+     * This method is responsible for generating the immediate field of the R-type instructions.
+     * 
+     * @param instrucao the instruction to be processed
+     */
     public void gerarImm (String instrucao) {
         String opcodeAux = instrucao.substring(25, 31+1);
         int opcode = Integer.parseInt(opcodeAux, 2);

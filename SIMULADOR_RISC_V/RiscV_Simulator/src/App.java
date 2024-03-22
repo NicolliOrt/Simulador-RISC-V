@@ -35,7 +35,7 @@ public class App {
         }
         scanner.close();// Fechar o scanner
     
-        mi.adicionarInstrucoes(instrucoes);
+        mi.adicionarInstrucoes(instrucoes);//adiciona na tabela de instrucoes
         
         return instrucoes;
     } 
